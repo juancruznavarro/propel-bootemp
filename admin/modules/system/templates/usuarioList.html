@@ -1,0 +1,49 @@
+<h1>{$titulo}</h1>
+<p>
+	<a href="?module={$module}&view={$view}&action=add"> New
+	</a>
+</p>
+
+
+<div class="box-body table-responsive">
+    <table class="table table-bordered table-striped data-tables-bs">
+        <thead>
+            <tr>
+                <th width="30">Nº</th>
+                <th>Usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nivel</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {foreach $usuarios as $item}
+            <tr>
+                <td>{$item.numero}</td>
+                <td>{$item.usuario}</td>
+                <td>{$item.nombre}</td>
+                <td>{$item.apellido}</td>
+                <td>{$item.nivel}</td>
+                <td width="110">
+                    {if $item.estado eq "N"}
+                    <a class="btn btn-danger btn-circle" href="?module={$module}&view={$view}&action=editEstadoHab&id={$item.id}" title="Habilitar?" data-placement="top" data-toggle="tooltip"><!-- Morris chart -->
+                        <i class="fa fa-check"></i>
+                    </a>
+                    {else}
+                    <a class="btn btn-success btn-circle" href="?module={$module}&view={$view}&action=editEstadoNoHab&id={$item.id}" title="Inhabilitar?" data-placement="top" data-toggle="tooltip">
+                        <i class="fa fa-check"></i>
+                    </a>
+                    {/if}
+                    <a class="btn btn-primary btn-circle" href="?module={$module}&view={$view}&action=edit&id={$item.id}"title="Editar" data-placement="top" data-toggle="tooltip" >
+                        <i class="fa fa-list"></i>
+                    </a>
+                    <a class="btn btn-warning btn-circle" href="?module={$module}&view={$view}&action=del&id={$item.id}" title="Borrar?" data-placement="top" data-toggle="tooltip" onclick="return confirm('¿ Desea borrar este registro ?');" >
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+            {/foreach}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+.form-login {
+	text-align: right;
+	width: 350px;
+	margin: 0 0 0 160px;
+}
+
+.form-login input[type=text],.form-login input[type=password] {
+	width: 150px;
+	text-align: center;
+	margin: 5px 0 5px 5px;
+}

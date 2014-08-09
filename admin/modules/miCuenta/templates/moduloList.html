@@ -1,0 +1,60 @@
+<h1>{$titulo}</h1>
+
+<h3>Módulos Instalados</h3>
+
+<table>
+	<tr>
+		<th>N°</th>
+		<th>Nombre</th>
+		<th>Etiqueta</th>
+		<th>Recursos</th>
+		<th>Descripción</th>
+		<th>&nbsp;</th>
+	</tr>
+	{foreach $modulosInstalados as $item}
+	<tr>
+		<td align="center">{$item.numero}</td>
+		<td>{$item.nombre}</td>
+		<td>{$item.etiqueta}</td>
+		<td align="center">{$item.recursos}</td>
+		<td>{$item.descripcion}</td>
+		<td align="right"><a
+			href="?module={$module}&view={$view}&action=del&id={$item.id}">Desinstalar</a>
+			<a href="?module={$module}&view={$view}&action=edit&id={$item.id}">Detalle</a>
+		</td>
+	</tr>
+	{foreachelse}
+	<tr>
+		<td colspan="5">No existen módulos instalados.</td>
+	</tr>
+	{/foreach}
+</table>
+
+<h3>Módulos no Instalados</h3>
+
+<table>
+	<tr>
+		<th>N°</th>
+		<th>Nombre</th>
+		<th>Etiqueta</th>
+		<th>Recursos</th>
+		<th>Descripción</th>
+		<th>&nbsp;</th>
+	</tr>
+	{foreach $modulosSinInstalar as $item}
+	<tr>
+		<td align="center">{$item.numero}</td>
+		<td>{$item.nombre}</td>
+		<td>{$item.etiqueta}</td>
+		<td align="center">{$item.recursos}</td>
+		<td>{$item.descripcion}</td>
+		<td align="right"><a
+			href="?module={$module}&view={$view}&action=add&id={$item.id}">Instalar</a>
+		</td>
+	</tr>
+	{foreachelse}
+	<tr>
+		<td colspan="5">No quedan módulos por instalar.</td>
+	</tr>
+	{/foreach}
+</table>

@@ -1,0 +1,102 @@
+<h1>{$titulo}</h1>
+
+<form name="frm" id="frm" method="post">
+	<fieldset>
+		<legend>Datos Nivel</legend>
+		{if $smarty.get.action eq 'add'}
+		<p>
+			<label>ID (1 caracter)*<input type="text" name="idNew"
+				id="idNew" value="{$id}" /></label>
+		</p>
+		{else}
+		<p>
+			<label>ID (1 caracter)*<input type="text" name="idNew"
+				id="idNew" value="{$id}" readonly="readonly" /></label>
+		</p>
+		{/if} <label>Nombre <input type="text" name="nombre"
+			id="nombre" value="{$nombre}" /></label> <label>Home <input
+			type="text" name="home" id="home" value="{$home}" /></label> <label>Descripción
+			<textarea name="desc" id="desc">{$desc}</textarea>
+		</label>
+	</fieldset>
+	<p>
+		<input type="submit" value="Guardar" /> <a
+			href="?module={$module}&view={$view}">Volver</a>
+	</p>
+	<input type="hidden" name="id" id="id" value="{$id}" /> <input
+		type="hidden" name="action" id="action" value="{$action}" /> <input
+		type="hidden" name="module" id="module" value="{$module}" /> <input
+		type="hidden" name="view" id="view" value="{$view}" />
+</form>
+
+{if $smarty.get.action eq 'edit'}
+<h2>Módulos habilitados</h2>
+<form name="frmModulos" id="frmModulos" method="post">
+	<table>
+		<tr>
+			<th>Posición</th>
+			<th>Nombre Módulo</th>
+			<th>Descripción</th>
+			<th>Quitar</th>
+		</tr>
+		{foreach $modulosHabilitados as $item}
+		<tr>
+			<td align="center"><input size="3" style="text-align: center;"
+				type="text" name="posicion_{$item.id}" id="posicion_{$item.id}"
+				value="{$item.posicion}" /> <input type="hidden" name="idModulo[]"
+				value="{$item.id}" /></td>
+			<td>{$item.nombre}</td>
+			<td>{$item.descripcion}</td>
+			<td align="center"><a
+				href="?module={$module}&view={$view}&action=delModulo&idMod={$item.id}&id={$id}">Quitar</a></td>
+		</tr>
+		{foreachelse}
+		<tr>
+			<td colspan="4">Este nivel no tiene módulos habilitados.</td>
+		</tr>
+		{/foreach}
+	</table>
+	<p>
+		<input type="submit" value="Ordenar..." />
+	</p>
+	<input type="hidden" name="id" id="id" value="{$id}" /> <input
+		type="hidden" name="action" id="action" value="ordenar" /> <input
+		type="hidden" name="module" id="module" value="{$module}" /> <input
+		type="hidden" name="view" id="view" value="{$view}" />
+</form>
+
+<h2>Módulos disponibles</h2>
+<form name="frmModulosDisponibles" id="frmModulosDisponibles"
+	method="post">
+	<table>
+		<tr>
+			<th>Posición</th>
+			<th>Nombre Módulo</th>
+			<th>Descripción</th>
+			<th>Habilitar</th>
+		</tr>
+		{foreach $modulosInhabilitados as $item}
+		<tr>
+			<td align="center"><input type="text"
+				style="text-align: center;" size="3" name="posicion_{$item.id}"
+				id="posicion" value="{$item.posicion}" /></td>
+			<td>{$item.nombre}</td>
+			<td>{$item.descripcion}</td>
+			<td align="center"><input type="checkbox" name="idModulo[]"
+				id="idModulo_{$item.id}" value="{$item.id}" /></td>
+		</tr>
+		{foreachelse}
+		<tr>
+			<td colspan="4">No quedan módulos sin habilitar.</td>
+		</tr>
+		{/foreach}
+	</table>
+	<p>
+		<input type="submit" value="Habilitar..." />
+	</p>
+	<input type="hidden" name="id" id="id" value="{$id}" /> <input
+		type="hidden" name="action" id="action" value="habilitar" /> <input
+		type="hidden" name="module" id="module" value="{$module}" /> <input
+		type="hidden" name="view" id="view" value="{$view}" />
+</form>
+{/if}

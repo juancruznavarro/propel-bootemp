@@ -1,0 +1,88 @@
+<h1>{$titulo}</h1>
+
+<form name="frm" id="frm" method="post">
+	<fieldset>
+		<legend>Datos Módulo</legend>
+		<p>
+			<label>Nombre: <strong>{$nombre}</strong></label>
+		</p>
+		<label>Etiqueta <input type="text" name="etiqueta"
+			id="etiqueta" value="{$etiqueta}" /></label> <label>Descripción <textarea
+				name="desc" id="desc">{$desc}</textarea></label>
+	</fieldset>
+	<fieldset>
+		<legend>Recursos del Módulo</legend>
+		<table>
+			<tr>
+				<th>Posición</th>
+				<th>Nombre</th>
+				<th>Etiqueta</th>
+				<th>Visible?</th>
+			</tr>
+			{foreach $recursos as $item}
+			<tr>
+				<td><input size="3" style="text-align: center;" type="text"
+					name="posicion_{$item.id}" id="posicion_{$item.id}"
+					value="{$item.posicion}" /></td>
+				<td><input type="text" name="nombre_{$item.id}"
+					id="nombre_{$item.id}" value="{$item.nombre}" /></td>
+				<td><input type="text" name="etiqueta_{$item.id}"
+					id="etiqueta_{$item.id}" value="{$item.etiqueta}" /></td>
+				<td align="center"><label><input type="radio"
+						name="visible_{$item.id}" id="visibleY_{$item.id}" value="Y" {$item.visibleY} />Si</label>
+					<label><input type="radio" name="visible_{$item.id}"
+						id="visibleN_{$item.id}" value="N" {$item.visibleN} />No</label> <input
+					type="hidden" name="idRecurso[]" id="idRecurso_{$item.id}"
+					value="{$item.id}" /></td>
+			</tr>
+			{/foreach}
+		</table>
+	</fieldset>
+	<input type="submit" value="Guardar" /> <a
+		href="?module={$module}&view={$view}">Volver</a> <input type="hidden"
+		name="id" id="id" value="{$id}" /> <input type="hidden" name="module"
+		id="module" value="{$module}" /> <input type="hidden" name="view"
+		id="view" value="{$view}" /> <input type="hidden" name="action"
+		id="action" value="{$action}" />
+</form>
+
+<h2>Recursos Nuevos</h2>
+<form name="frmNuevos" id="frmNuevos" method="post">
+	<fieldset>
+		<legend>Listado</legend>
+		<table>
+			<tr>
+				<th>Posición</th>
+				<th>Nombre</th>
+				<th>Etiqueta</th>
+				<th>Visible?</th>
+			</tr>
+			{foreach $recursosNuevos as $item}
+			<tr>
+				<td><input size="3" style="text-align: center;" type="text"
+					name="posicion_{$item.id}" id="posicion_{$item.id}"
+					value="{$item.posicion}" /></td>
+				<td>{$item.nombre}<input type="hidden" name="nombre_{$item.id}"
+					id="nombre_{$item.id}" value="{$item.nombre}" /></td>
+				<td><input type="text" name="etiqueta_{$item.id}"
+					id="etiqueta_{$item.id}" value="{$item.etiqueta}" /></td>
+				<td align="center"><label><input type="radio"
+						name="visible_{$item.id}" id="visibleY_{$item.id}" value="Y" {$item.visibleY} />Si</label>
+					<label><input type="radio" name="visible_{$item.id}"
+						id="visibleN_{$item.id}" value="N" {$item.visibleN} />No</label> <input
+					type="hidden" name="idRecurso[]" id="idRecurso_{$item.id}"
+					value="{$item.id}" /></td>
+			</tr>
+			{foreachelse}
+			<tr>
+				<td colspan="5">No existen recursos nuevos.</td>
+			</tr>
+			{/foreach}
+		</table>
+	</fieldset>
+	<input type="submit" value="Guardar" /> <input type="hidden" name="id"
+		id="id" value="{$id}" /> <input type="hidden" name="module"
+		id="module" value="{$module}" /> <input type="hidden" name="view"
+		id="view" value="{$view}" /> <input type="hidden" name="action"
+		id="action" value="addRecursos" />
+</form>

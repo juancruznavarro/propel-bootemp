@@ -1,0 +1,35 @@
+<h1>{$titulo}</h1>
+
+<div class="box-body table-responsive">
+    <table class="table table-bordered table-striped data-tables-bs">
+        <thead>
+        <tr>
+            <th>N°</th>
+            <th>Nombre</th>
+            <th>Home por defecto</th>
+            <th>Módulos</th>
+            <th>Descripción</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $niveles as $item}
+        <tr>
+            <td align="center">{$item.numero}</td>
+            <td>{$item.nombre}</td>
+            <td>{$item.home}</td>
+            <td>{$item.modulos}</td>
+            <td>{$item.descripcion}</td>
+            <td width="90" align="center">
+                <a class="btn btn-primary btn-circle" href="?module={$module}&view={$view}&action=edit&id={$item.id}"title="Editar" data-placement="top" data-toggle="tooltip" >
+                    <i class="fa fa-list"></i>
+                </a>
+                <a class="btn btn-warning btn-circle" href="?module={$module}&view={$view}&action=del&id={$item.id}" title="Borrar?" data-placement="top" data-toggle="tooltip" onclick="return confirm('¿ Desea borrar este registro ?');" >
+                    <i class="fa fa-times"></i>
+                </a>
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+</div>

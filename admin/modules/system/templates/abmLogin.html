@@ -1,0 +1,17 @@
+<h1>{$titulo}</h1>
+<p>{$descripcion}</p>
+
+<form name="frmLogin" id="frmLogin" method="post" class="form-login">
+	<fieldset>
+		<legend>Ingreso al Sistema</legend>
+		<label>Usuario: <input type="text" name="usuario" id="usuario"
+			class="required" title="Ingrese el nombre de usuario" /></label> <label>Clave:
+			<input type="password" name="clave" id="clave" class="required"
+			title="Ingrese el password" />
+		</label>
+	</fieldset>
+	<input type="submit" value="Ingresar..." />
+    <input type="hidden" name="module" id="moddule" value="{$module}" />
+    <input type="hidden" name="view" id="view" value="{$view}" />
+    <input type="hidden" name="action" id="action" value="login" />
+</form>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" defaultPhpNamingMethod="phpname" name="db_adminLTE">
+
+
+  
+
+<!-- MODULO SISTEMA -->
+<table name="SistemaModulo" package="system.model">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true" sqlType="INT(10) unsigned" />
+	<column name="nombre" type="VARCHAR" size="255" required="true" />
+	<column name="etiqueta" type="VARCHAR" size="255" required="true" />
+	<column name="descripcion" type="VARCHAR" size="45" />
+	<column name="posicion" type="INTEGER" required="true" default="0" defaultExpr="0" />
+    <column name="ico" type="VARCHAR" size="255" />
+    <column name="visible" type="ENUM" required="true" default="Y" valueSet="Y,N" defaultExpr="Y" />
+</table>
+
+<table name="SistemaRecurso" package="system.model">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true" sqlType="INT(10) unsigned" />
+    <column name="idSistemaModulo" type="INTEGER" required="true" sqlType="INT(10) unsigned" />
+    <column name="nombre" type="VARCHAR" size="255" required="true" />
+    <column name="posicion" type="INTEGER" required="true" default="0" defaultExpr="0" />
+    <column name="etiqueta" type="VARCHAR" size="255" required="true" />
+    <column name="ico" type="VARCHAR" size="255" />
+    <column name="visible" type="ENUM" required="true" default="N" valueSet="Y,N" defaultExpr="N" />
+
+    <foreign-key name="fk_SistemaRecurso_SistemaModulo1" foreignTable="SistemaModulo" onDelete="cascade">
+        <reference local="idSistemaModulo" foreign="id" />
+    </foreign-key>
+    <index name="fk_SistemaRecurso_SistemaModulo1">
+        <index-column name="idSistemaModulo" />
+    </index>
+</table>
+
+<table name="SistemaUsuario" package="system.model">
+    <column name="id" type="INTEGER" primaryKey="true" required="true"	autoIncrement="true" sqlType="INT(10) unsigned" />
+    <column name="idSistemaNivel" type="CHAR" size="1" required="true" />
+    <column name="nick" type="VARCHAR" size="255" required="true" />
+    <column name="password" type="VARCHAR" size="255" required="true" />
+    <column name="firstName" type="VARCHAR" size="255"  />
+    <column name="lastName" type="VARCHAR" size="255" />
+
+    <column name="created" type="INTEGER"  />
+    <column name="updated" type="INTEGER"  />
+
+
+    <column name="activo" type="ENUM" required="true" default="N" valueSet="Y,N" defaultExpr="N" />
+    <foreign-key name="fk_SistemaUsuario_SistemaNivel1" foreignTable="SistemaNivel">
+        <reference local="idSistemaNivel" foreign="id" />
+    </foreign-key>
+    <index name="fk_SistemaUsuario_SistemaNivel1">
+        <index-column name="idSistemaNivel" />
+    </index>
+</table>
+
+<table name="SistemaNivel" package="system.model">
+    <column name="id" type="CHAR" size="1" primaryKey="true"	required="true" />
+    <column name="nombre" type="VARCHAR" size="255" required="true" />
+    <column name="descripcion" type="LONGVARCHAR" />
+    <column name="home" type="VARCHAR" size="255" />
+</table>
+
+<table name="SistemaNivelModulo" package="system.model" isCrossRef="true">
+    <column name="idSistemaNivel" type="CHAR" size="1" primaryKey="true" required="true" />
+    <column name="idSistemaModulo" type="INTEGER" primaryKey="true"	required="true" sqlType="INT(10) unsigned" />
+    <column name="posicion" type="INTEGER" required="true" default="0"	defaultExpr="0" />
+
+    <foreign-key name="fk_SistemaNivel_has_SistemaModulo_SistemaNivel1"	foreignTable="SistemaNivel" onDelete="cascade">
+        <reference local="idSistemaNivel" foreign="id" />
+    </foreign-key>
+    <foreign-key name="fk_SistemaNivel_has_SistemaModulo_SistemaModulo1" foreignTable="SistemaModulo" onDelete="cascade">
+        <reference local="idSistemaModulo" foreign="id" />
+    </foreign-key>
+    <index name="fk_SistemaNivel_has_SistemaModulo_SistemaModulo1">
+        <index-column name="idSistemaModulo" />
+    </index>
+    <index name="fk_SistemaNivel_has_SistemaModulo_SistemaNivel1">
+        <index-column name="idSistemaNivel" />
+    </index>
+</table>
+
+<table name="SistemaUsuarioRecurso" package="system.model" isCrossRef="true">
+    <column name="idSistemaUsuario" type="INTEGER" primaryKey="true" required="true" sqlType="INT(10) unsigned" />
+    <column name="idSistemaRecurso" type="INTEGER" primaryKey="true" required="true" sqlType="INT(10) unsigned" />
+    <foreign-key name="fk_SistemaUsuario_has_SistemaRecurso_SistemaUsuario1" foreignTable="SistemaUsuario" onDelete="cascade">
+        <reference local="idSistemaUsuario" foreign="id" />
+    </foreign-key>
+    <foreign-key name="fk_SistemaUsuario_has_SistemaRecurso_SistemaRecurso1" foreignTable="SistemaRecurso" onDelete="cascade">
+        <reference local="idSistemaRecurso" foreign="id" />
+    </foreign-key>
+    <index name="fk_SistemaUsuario_has_SistemaRecurso_SistemaRecurso1">
+        <index-column name="idSistemaRecurso" />
+    </index>
+    <index name="fk_SistemaUsuario_has_SistemaRecurso_SistemaUsuario1">
+        <index-column name="idSistemaUsuario" />
+    </index>
+</table>
+  <!-- FIN MODULO SISTEMA -->
+</database>

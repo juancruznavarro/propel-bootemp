@@ -1,0 +1,36 @@
+
+
+
+
+
+
+
+<div class="row">
+    {foreach $recursos as $item}
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>
+                    99
+                </h3>
+                <p>
+                    {$item.etiqueta}
+                </p>
+            </div>
+            <div class="icon">
+                <i class="{$item.ico}"></i>
+            </div>
+            <a href="{$item.url}" class="small-box-footer">
+                Go <i class="fa fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div><!-- ./col -->
+    {/foreach}
+
+
+
+</div><!-- /.row -->
+
+
+

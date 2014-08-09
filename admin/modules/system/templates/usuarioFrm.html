@@ -1,0 +1,98 @@
+<div class="col-md-6">
+    <!-- general form elements -->
+    {if $smarty.get.return eq '1'}
+    <div class="alert alert-success alert-dismissable">
+        <i class="fa fa-check"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <b>:)</b> Los cambios se guardaron correctamente...
+    </div>
+    {/if}
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">User</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" name="frm" id="frm" method="post">
+            <div class="box-body">
+                <div class="form-group">
+                    <label>Nivel</label>
+                    <select name="nivel" class="form-control">
+                        <option value="">Seleccione..</option>
+                        {foreach $niveles as $item}
+                            <option {$item.selected} value="{$item.id}">{$item.nombre}</option>
+                        {/foreach}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user">User</label>
+                    <input type="text" class="form-control" name="user" id="user" value="{$nick}" placeholder="Enter user">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="Off">
+                </div>
+                <div class="form-group">
+                    <label for="user">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName" value="{$firstName}" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="user">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" value="{$lastName}" placeholder="Last Name">
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="estado" id="estado" value="Y" {$estadoActivo}>
+                        Activo
+                    </label><br>
+                    <label>
+                        <input type="radio" name="estado" id="estado" value="N" {$estadoInactivo} >
+                        Inactivo
+                    </label>
+                </div>
+            </div><!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="hidden" name="module" id="module" value="{$module}" />
+                <input type="hidden" name="view" id="view" value="{$view}" />
+                <input type="hidden" name="action" id="action" value="{$action}">
+                <input type="hidden" name="id" id="id" value="{$id}" />
+            </div>
+        </form>
+    </div><!-- /.box -->
+</div><!--/.col (left) -->
+
+
+<!---
+<h1>{$titulo}</h1>
+<p>{$descripcion}</p>
+<form name="frm" id="frm" method="post">
+	<fieldset>
+		<legend>Datos de Usuario</legend>
+		<label>Nivel:<br> <select name="nivel" id="nivel">
+				<option value="">Seleccione..</option> {foreach $niveles as $item}
+				<option {$item.selected} value="{$item.id}">{$item.nombre}</option>
+				{/foreach}
+		</select>
+		</label> <label>Nombre de Usuario:<br> <input type="text"
+			name="user" id="user" value="{$nick}" />
+		</label> <label>Nueva Clave: <br> <input type="password"
+			name="clave" id="clave" value="" />
+		</label>
+		<p>{$mensaje}</p>
+	</fieldset>
+	<fieldset>
+		<legend>Estado</legend>
+		<label> Activo <input type="radio" name="estado" id="estado"
+			value="Y" {$estadoActivo} />
+		</label> <label> Inactivo <input type="radio" name="estado"
+			id="estado" value="N" {$estadoInactivo} />
+		</label>
+	</fieldset>
+
+	<input type="hidden" name="module" id="module" value="{$module}" />
+	<input type="hidden" name="view" id="view" value="{$view}" />
+	<input type="hidden" name="id" id="id" value="{$id}" />
+	<input type="hidden" name="action" id="action" value="{$action}">
+</form>
+-->

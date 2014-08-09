@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<propel>
+		<datasources default="db_adminLTE">
+			<datasource id="db_adminLTE">
+				<adapter>mysql</adapter> <!-- sqlite, mysql, mssql, oracle, or pgsql -->
+				<connection>
+					<dsn>mysql:host=localhost;dbname=db_adminLTE</dsn>
+					<user>root</user>
+					<password>123456</password>
+					<settings>
+						<setting id="charset">utf8</setting>
+					</settings>
+				</connection>
+			</datasource>
+		</datasources>
+	</propel>
+</config>
+
+
