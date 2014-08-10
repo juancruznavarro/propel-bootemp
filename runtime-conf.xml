@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<propel>
-		<datasources default="db_adminLTE">
-			<datasource id="db_adminLTE">
+		<datasources default="db_propel-bootemp">
+			<datasource id="db_propel-bootemp">
 				<adapter>mysql</adapter> <!-- sqlite, mysql, mssql, oracle, or pgsql -->
 				<connection>
-					<dsn>mysql:host=localhost;dbname=db_adminLTE</dsn>
+					<dsn>mysql:host=localhost;dbname=db_propel-bootemp</dsn>
 					<user>root</user>
 					<password>123456</password>
 					<settings>
